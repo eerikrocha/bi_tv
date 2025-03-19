@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternador de BI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Evita rolagem */
+            background-color: #000; /* Fundo preto para melhor visualização */
+        }
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="biFrame" src="" allowfullscreen></iframe>
+
+    <script>
+        // Lista de links dos relatórios do Power BI
+        const biLinks = [
+            "https://app.powerbi.com/reportEmbed?reportId=46ea8e79-120f-4836-afb2-cefd4a6ed672&autoAuth=true&ctid=7e4058f3-1c1f-4c3a-8151-03d3a2c3c30c",
+            "https://app.powerbi.com/reportEmbed?reportId=130af8bc-2349-41f1-a4c9-f922d3c4b6f3&autoAuth=true&ctid=7e4058f3-1c1f-4c3a-8151-03d3a2c3c30c",
+            "https://app.powerbi.com/reportEmbed?reportId=b34006b4-5eef-4001-bed1-2c7cea026ed1&autoAuth=true&ctid=7e4058f3-1c1f-4c3a-8151-03d3a2c3c30c",
+            "https://app.powerbi.com/reportEmbed?reportId=2a7276df-ad88-4fa2-8f15-69bb3a2fa359&autoAuth=true&ctid=7e4058f3-1c1f-4c3a-8151-03d3a2c3c30c"
+        ];
+
+        let index = 0;
+        const iframe = document.getElementById("biFrame");
+
+        function trocarBI() {
+            iframe.src = biLinks[index];
+            index = (index + 1) % biLinks.length; // Loop infinito
+        }
+
+        // Carregar o primeiro BI ao iniciar
+        trocarBI();
+
+        // Alternar a cada 30 segundos
+        setInterval(trocarBI, 30000);
+    </script>
+
+</body>
+</html>
